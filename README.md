@@ -5,7 +5,7 @@ Fake SMTP Server is an email testing tool for QA & development teams.
 It allows manual testing in a web interface, and automated testing via an API.
 
 ## Docker image
-[reachfive/fake-smtp-server](https://hub.docker.com/r/reachfive/fake-smtp-server)
+[xixle1337/fake-smtp-server](https://hub.docker.com/r/xixle1337/fake-smtp-server)
 
 ## API
 
@@ -91,17 +91,18 @@ Usage:
   fake-smtp-server [OPTIONS] [ARGS]
 
 Options:
-  -s, --smtp-port [NUMBER] SMTP port to listen on (Default is 1025)
-      --smtp-ip [IP]       IP Address to bind SMTP service to (Default is 0.0.0.0)
-  -h, --http-port [NUMBER] HTTP port to listen on (Default is 1080)
-      --http-ip [IP]       IP Address to bind HTTP service to (Default is 0.0.0.0)
-  -w, --whitelist STRING   Only accept e-mails from these adresses. Accepts
-                           multiple e-mails comma-separated
-  -m, --max [NUMBER]       Max number of e-mails to keep (Default is 100)
-  -a, --auth STRING        Enable Authentication
-      --headers            Enable headers in responses
-  -k, --no-color           Omit color from output
-      --debug              Show debug information
+  -s, --smtp-port [NUMBER]   SMTP port to listen on (Default is 1025)
+      --smtp-ip [IP]         IP Address to bind SMTP service to (Default is 0.0.0.0)
+  -h, --http-port [NUMBER]   HTTP port to listen on (Default is 1080)
+      --http-ip [IP]         IP Address to bind HTTP service to (Default is 0.0.0.0)
+  -w, --whitelist STRING     Only accept e-mails from these adresses. Accepts
+                             multiple e-mails comma-separated
+  -m, --max [NUMBER]         Max number of e-mails to keep (Default is 100)
+  -a, --auth STRING          Enable Authentication
+      --headers              Enable headers in responses
+  -k, --no-color             Omit color from output
+      --debug                Show debug information
+      --context_path STRING  Set context path for web and api without tailing /
 ```
 
 ## Configure fake-smtp-server to run as a service at startup
