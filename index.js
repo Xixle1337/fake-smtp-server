@@ -16,7 +16,8 @@ const config = cli.parse({
   whitelist: ['w', 'Only accept e-mails from these adresses. Accepts multiple e-mails comma-separated', 'string'],
   max: ['m', 'Max number of e-mails to keep', 'number', 100],
   auth: ['a', 'Enable Authentication', 'string'],
-  headers: [false, 'Enable headers in responses']
+  headers: [false, 'Enable headers in responses'],
+  context_path: [false,'Set ContextPath','string']
 });
 
 const whitelist = config.whitelist ? config.whitelist.split(',') : [];
@@ -30,6 +31,11 @@ if (config.auth) {
   let authConfig = config.auth.split(":");
   users = {};
   users[authConfig[0]] = authConfig[1];
+}
+if (config.context_path) {
+  context_path=config.context_path;
+}else{
+  context_path='';
 }
 
 const mails = [];
@@ -111,7 +117,7 @@ if (users) {
 
 const buildDir = path.join(__dirname, 'build');
 
-app.use(express.static(buildDir));
+app.use(context_path, express.static(buildDir));
 
 function emailFilter(filter) {
   return email => {
@@ -137,11 +143,11 @@ function emailFilter(filter) {
   }
 }
 
-app.get('/api/emails', (req, res) => {
+app.get(context_path+'/api/emails', (req, res) => {
   res.json(mails.filter(emailFilter(req.query)));
 });
 
-app.delete('/api/emails', (req, res) => {
+app.delete(context_path+'/api/emails', (req, res) => {
     mails.length = 0;
     res.send();
 });
